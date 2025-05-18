@@ -62,7 +62,7 @@ function love.load()
             dog_image = "How can it be!!",
             "I am a dog!"
         },
-        end = {
+        ["end"] = {
             "So I really was never a human, huh.",
             "Life is crazy sometimes."
         }

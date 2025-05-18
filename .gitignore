@@ -1,3 +1,6 @@
 main.lua
+conf.lua
+lick.lua
 assets/
 .luarc.json
+*~
