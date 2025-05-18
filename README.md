@@ -1,5 +1,3 @@
-202505171643 romance
-
 # What is romance?
 
 romance is a visual novel library written on top of [love2d](https://love2d.org/).
@@ -23,7 +21,7 @@ do this with your package manager or at the [love2d website](https://love2d.org/
 Once you get [love2d](https://love2d.org/) working clone this repository.
 
 ```bash
-git clone romance-repo
+git clone https://github.com/KittyNekoStudio/romance.git
 ```
 
 Then simply ```require``` romance.lua in your main.lua file. That's it!
