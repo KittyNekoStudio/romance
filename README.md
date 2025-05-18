@@ -48,16 +48,33 @@ function love.load()
         dog = "dog.png"
     })
     
-    -- Creates a new branch
-    game.branch.new("intro")
-    game.branch.set("intro")
-    
-    -- Set current text
+    -- Set current text providing each branch as a new table
     game.text = {
-        "I have been wondering about myself lately.",
-        "I don't even know who I am. Am I even human?"
+        intro = {
+            "I have been wondering about myself lately.",
+            "I don't even know who I am. Am I even human?"
+        },
+        cat = {
+            -- You can name lines to be referenced later
+            cat_image = "Yes, yes, I am a cat!"
+        },
+        dog = {
+            dog_image = "How can it be!!",
+            "I am a dog!"
+        },
+        end = {
+            "So I really was never a human, huh.",
+            "Life is crazy sometimes."
+        }
     }
-    
+
+    -- Creates a new branch
+    -- Branch names have to be the same names defined in the text table
+    game.branch.new("intro")
+    -- Creating and setting a branch allows you to 
+    -- Configure each branch separately
+    game.branch.set("intro")
+ 
     -- Create a branching path after all text has been drawn
     -- Provide text to draw in text box, 
     -- and object(s) containing text to draw in choice box, and the branch
@@ -67,11 +84,6 @@ function love.load()
     game.branch.new("cat")
     game.branch.set("cat")
     
-    game.text = {
-        -- You can name lines to be referenced later
-        cat_image = "Yes, yes, I am a cat!"
-    }
-    
     game.image.set("cat", "cat_image")
     
     -- If you do not provide a choice but want to move onto a new branch
@@ -80,21 +92,11 @@ function love.load()
     -- Convenience function to create and set a branch
     game.branch.set_new("dog")
     
-    game.branch.text = {
-        dog_image = "How can it be!!",
-        "I am a dog!"
-    }
-    
     game.image.set("dog", "dog_image")
 
     game.branch.next("end")
     
     game.branch.set_new("end")
-    
-    game.text = {
-        "So I really was never a human, huh.",
-        "Life is crazy sometimes."
-    }
 end
 
 function love.draw()
