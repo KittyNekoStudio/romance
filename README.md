@@ -34,7 +34,6 @@ Here is a simple program written with romance. It does not work yet.
 -- Require romance.lua
 local romance = require "romance"
 
-
 -- Create new game
 local game = romance.new_game()
 
