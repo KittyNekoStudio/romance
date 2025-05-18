@@ -1,6 +1,4 @@
-local romance = {}
-
-romance.new_game = function()
+local function init_game()
    local game = {}
 
    game.image = {}
@@ -22,4 +20,4 @@ romance.new_game = function()
    return game
 end
 
-return romance
+return init_game
