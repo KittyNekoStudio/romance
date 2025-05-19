@@ -1,7 +1,7 @@
 local function init_branch(game)
    game.branch.new = function(name)
       game.branch[name] = {}
-      game.branch[name].text = game.text[name]
+      game.branch[name].text = {}
    end
 
    game.branch.set = function(name)
