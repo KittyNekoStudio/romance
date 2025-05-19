@@ -1,5 +1,7 @@
-local function init_image(game)
-   game.image.load = function(image_table)
+local image = {}
+
+function image.init(game)
+   function game.image.load(image_table)
       for k, v in pairs(image_table) do
          if game.image[k] then
             error("image name already exists")
@@ -9,4 +11,4 @@ local function init_image(game)
    end
 end
 
-return init_image
+return image

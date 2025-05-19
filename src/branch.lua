@@ -1,20 +1,22 @@
-local function init_branch(game)
-   game.branch.new = function(name)
+local branch = {}
+
+function branch.init(game)
+   function game.branch.new(name)
       game.branch[name] = {}
       game.branch[name].text = {}
    end
 
-   game.branch.set = function(name)
+   function game.branch.set(name)
       if not game.branch[name] then
          error("branch " .. name .. " does not exist")
       end
       game._current_branch = name
    end
 
-   game.branch.set_new = function(name)
+   function game.branch.set_new(name)
       game.branch.new(name)
       game.branch.set(name)
    end
 end
 
-return init_branch
+return branch
