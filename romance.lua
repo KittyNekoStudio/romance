@@ -1,6 +1,4 @@
-local function init_game()
-   local game = {}
-
+local function init_game(game)
    game.image = {}
    local init_image = require "src.image"
    init_image(game)
@@ -16,8 +14,6 @@ local function init_game()
    game.textbox = {}
    local init_textbox = require "src.textbox"
    init_textbox(game)
-
-   return game
 end
 
 return init_game

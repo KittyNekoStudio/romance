@@ -5,8 +5,6 @@ local function init_textbox(game)
    game.textbox.render = function()
       love.graphics.rectangle("line", game.textbox.width,
                               game.textbox.height, 800, 90)
-      love.graphics.setFont(love.graphics.newFont(game.text.font_size))
-      love.graphics.print("Hello, World", 300, 400)
    end
 end
 
