@@ -32,10 +32,13 @@ Here is a simple program written with romance. It does not work yet.
 
 ```lua
 -- Require romance.lua
-local romance = require "romance"
+local init_game = require "romance"
 
 -- Create new game
-local game = romance.new_game()
+local game = {}
+
+-- Romance returns a function that initializes a table with required fields
+init_game(game)
 
 function love.load()
     -- Set key that promts the next line of text
@@ -48,43 +51,38 @@ function love.load()
         dog = "dog.png"
     })
     
-    -- Set current text providing each branch as a new table
-    game.text = {
-        intro = {
-            "I have been wondering about myself lately.",
-            "I don't even know who I am. Am I even human?"
-        },
-        cat = {
-            -- You can name lines to be referenced later
-            cat_image = "Yes, yes, I am a cat!"
-        },
-        dog = {
-            dog_image = "How can it be!!",
-            "I am a dog!"
-        },
-        ["end"] = {
-            "So I really was never a human, huh.",
-            "Life is crazy sometimes."
-        }
-    }
-
     -- Creates a new branch
-    -- Branch names have to be the same names defined in the text table
+    -- Branches are each path of the visual novel
     game.branch.new("intro")
-    -- Creating and setting a branch allows you to 
-    -- Configure each branch separately
+
+    -- Creating and setting separate branchs allows you to 
+    -- Configure each branch individually
+    -- Order of set branches matter
+    -- Branches play in the order they are set
     game.branch.set("intro")
  
+    -- Adds text to currently bound branch
+    game.text.add({
+            "I have been wondering about myself lately.",
+            "I don't even know who I am. Am I even human?"
+        })
+
     -- Create a branching path after all text has been drawn
     -- Provide text to draw in text box, 
     -- and object(s) containing text to draw in choice box, and the branch
+    -- Choices set the chosen path
     game.branch.choice("What am I?", {"Cat", "cat"}, {"Dog", "dog"})
     
     -- Set new branching path
     game.branch.new("cat")
     game.branch.set("cat")
     
-    game.image.set("cat", "cat_image")
+    game.text.add({
+            "Yes, yes, I am a cat!"
+        })
+    
+    -- Draws an image onto the screen at provided index into text table
+    game.image.set(1, "cat_image")
     
     -- If you do not provide a choice but want to move onto a new branch
     game.branch.next("end")
@@ -92,11 +90,21 @@ function love.load()
     -- Convenience function to create and set a branch
     game.branch.set_new("dog")
     
-    game.image.set("dog", "dog_image")
+    game.text.add({
+            "How can it be!!",
+            "I am a dog!"
+        })
+    
+    game.image.set(1, "dog_image")
 
     game.branch.next("end")
     
     game.branch.set_new("end")
+    
+    game.text.add({
+            "So I really was never a human, huh.",
+            "Life is crazy sometimes."
+        })
 end
 
 function love.draw()
