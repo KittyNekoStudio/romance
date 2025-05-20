@@ -27,6 +27,10 @@ function romance.init(game)
    game.sequence = {}
    local sequence = require("romance.sequence")
    sequence.init(game)
+
+   game.prompt = {}
+   local prompt = require("romance.prompt")
+   prompt.init(game)
 end
 
 return romance

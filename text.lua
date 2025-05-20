@@ -19,11 +19,15 @@ function text.init(game)
 
    function game.text.next()
       if game.start then
-         game.key.update_continue_pressed()
-         if game.key.continue_pressed then
-            game.index = game.index + 1
-         end
          game.textbox.render()
+
+         if not game.choosing then
+            game.key.update_continue_pressed()
+            if game.key.continue_pressed then
+               game.index = game.index + 1
+            end
+         end
+
          game.text.draw()
       else
          game.current_branch = game.starting_branch

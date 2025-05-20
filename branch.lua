@@ -11,6 +11,12 @@ function branch.init(game)
       game.branch[name] = {}
       game.branch[name].text = {}
       game.branch[name].name = name
+      game.branch[name].button_width = 500
+      game.branch[name].button_height = 40
+      game.branch[name].buttons = {}
+      game.branch[name].button_x = love.graphics.getWidth() / 2 - game.branch[name].button_width / 2
+      game.branch[name].button_y = love.graphics.getHeight() / 2 - game.branch[name].button_height / 2 - 100
+
 
       if table_length(game.sequence.tree) == 0 then
          game.current_branch = game.branch[name]
@@ -35,6 +41,13 @@ function branch.init(game)
 
    function game.branch.next(name)
       game.sequence.tree[game.current_branch.name] = name
+   end
+
+   function game.branch.choice(line, ...)
+      local args = {...}
+      table.insert(game.current_branch.text, line)
+      game.current_branch.choice = args
+      game.prompt.add_buttons()
    end
 end
 

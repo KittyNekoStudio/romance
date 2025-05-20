@@ -7,6 +7,7 @@ function textbox.init(game)
    }
 
    function game.textbox.render()
+      -- TODO! got dimensions and coordinates
       love.graphics.rectangle("line", game.textbox.width,
                               game.textbox.height, 800, 90)
    end
