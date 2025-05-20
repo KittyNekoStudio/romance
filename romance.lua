@@ -1,6 +1,9 @@
 local romance = {}
 
 function romance.init(game)
+   local base = require("romance.base")
+   base.init(game)
+
    game.image = {}
    local image = require("romance.image")
    image.init(game)
@@ -21,14 +24,9 @@ function romance.init(game)
    local key = require("romance.key")
    key.init(game)
 
-   game.next = {}
-   local _next = require("romance.next")
-   _next.init(game)
-
    game.sequence = {}
    local sequence = require("romance.sequence")
    sequence.init(game)
-
 end
 
 return romance
