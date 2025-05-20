@@ -6,8 +6,8 @@ function text.init(game)
    }
 
    function game.text.add(text_table)
-      for k, v in pairs(text_table) do
-         game.current_branch.text[k] = v
+      for _, v in pairs(text_table) do
+         table.insert(game.current_branch.text, v)
       end
    end
 
