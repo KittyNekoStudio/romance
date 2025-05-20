@@ -32,18 +32,15 @@ Here is a simple program written with romance. It does not work yet.
 
 ```lua
 -- Require romance.lua
-local init_game = require "romance"
+local romance = require("romance.romance")
 
 -- Create new game
 local game = {}
 
 -- Romance returns a function that initializes a table with required fields
-init_game(game)
+romance.init(game)
 
 function love.load()
-    -- Set key that promts the next line of text
-    game.key.continue = "space"
-    
     -- Load image into the game.image table
     -- Provide key to refer to image later
     game.image.load({
@@ -108,8 +105,6 @@ function love.load()
 end
 
 function love.draw()
-    if game.continue_key_pressed() then
-        game.next()
-    end
+    game.next()
 end
 ```
