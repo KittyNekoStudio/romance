@@ -2,13 +2,13 @@ local text = {}
 
 function text.init(game)
    game.text = {
+      index = 1,
       font_size = 20,
-      index = 1
    }
 
    function game.text.add(text_table)
       for k, v in pairs(text_table) do
-         game.branch[game._current_branch].text[k] = v
+         game.branch[game.sequence.current_branch].text[k] = v
       end
    end
 
@@ -19,12 +19,30 @@ function text.init(game)
    end
 
    function game.text.next()
-      game.key.update_continue_pressed()
-      if game.key.continue_pressed then
-         game.text.index = game.text.index + 1
+      if game.sequence.start then
+         game.key.update_continue_pressed()
+         if game.key.continue_pressed then
+            game.text.increment_index()
+         end
+         game.textbox.render()
+         game.text.draw()
+      else
+         game.sequence.current_branch = game.sequence.starting_branch
+         game.sequence.start = true
       end
-      game.textbox.render()
-      game.text.render(game.branch[game._current_branch].text[game.text.index])
+   end
+
+   function game.text.draw()
+      -- TODO: Fix how to get current branch
+      if game.branch[game.sequence.current_branch].text[game.text.index] then
+         game.text.render(game.branch[game.sequence.current_branch].text[game.text.index])
+      else
+         game.sequence.next_branch()
+      end
+   end
+
+   function game.text.increment_index()
+      game.text.index = game.text.index + 1
    end
 end
 

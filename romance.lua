@@ -24,6 +24,11 @@ function romance.init(game)
    game.next = {}
    local _next = require("romance.next")
    _next.init(game)
+
+   game.sequence = {}
+   local sequence = require("romance.sequence")
+   sequence.init(game)
+
 end
 
 return romance
