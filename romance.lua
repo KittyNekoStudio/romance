@@ -1,36 +1,38 @@
 local romance = {}
 
-function romance.init(game)
+function romance.init()
    local base = require("romance.base")
-   base.init(game)
+   base.init(romance)
 
-   game.image = {}
+   romance.image = {}
    local image = require("romance.image")
-   image.init(game)
+   image.init(romance)
 
-   game.text = {}
+   romance.text = {}
    local text = require ("romance.text")
-   text.init(game)
+   text.init(romance)
 
-   game.branch = {}
+   romance.branch = {}
    local branch = require ("romance.branch")
-   branch.init(game)
+   branch.init(romance)
 
-   game.textbox = {}
+   romance.textbox = {}
    local textbox = require ("romance.textbox")
-   textbox.init(game)
+   textbox.init(romance)
 
-   game.key = {}
+   romance.key = {}
    local key = require("romance.key")
-   key.init(game)
+   key.init(romance)
 
-   game.sequence = {}
+   romance.sequence = {}
    local sequence = require("romance.sequence")
-   sequence.init(game)
+   sequence.init(romance)
 
-   game.prompt = {}
+   romance.prompt = {}
    local prompt = require("romance.prompt")
-   prompt.init(game)
+   prompt.init(romance)
 end
+
+romance.init()
 
 return romance
