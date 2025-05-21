@@ -1,18 +1,17 @@
 local key = {}
 
-function key.init(game)
-
-   function game.key.update_continue_pressed()
-      if love.keyboard.isDown(game.conf.continue) then
-         if game.state.continue_constantly_pressed then
-            game.state.continue_pressed = false
+function key.init(romance)
+   function romance.key.updateContinuePressed()
+      if love.keyboard.isDown(romance.conf.continue) then
+         if romance.state.continue_constantly_pressed then
+            romance.state.continue_pressed = false
          else
-            game.state.continue_constantly_pressed = true
-            game.state.continue_pressed = true
+            romance.state.continue_constantly_pressed = true
+            romance.state.continue_pressed = true
          end
       else
-         game.state.continue_constantly_pressed = false
-         game.state.continue_pressed = false
+         romance.state.continue_constantly_pressed = false
+         romance.state.continue_pressed = false
       end
    end
 end

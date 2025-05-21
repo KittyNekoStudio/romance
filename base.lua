@@ -6,7 +6,7 @@ function base.init(romance)
       romance.text.next()
       if romance.state.choosing then
          for k, _ in pairs(romance.state.current_branch.buttons) do
-            romance.prompt.button_pressed(k)
+            romance.prompt.buttonPressed(k)
          end
       end
    end

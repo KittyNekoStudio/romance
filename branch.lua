@@ -6,50 +6,50 @@ local function table_length(_table)
    return count
 end
 
-function branch.init(game)
-   function game.branch.new(name)
-      game.branch[name] = {}
-      game.branch[name].text = {}
-      game.branch[name].image = {}
-      game.branch[name].name = name
-      game.branch[name].button_width = 500
-      game.branch[name].button_height = 40
-      game.branch[name].buttons = {}
-      game.branch[name].button_x = love.graphics.getWidth() / 2 - game.branch[name].button_width / 2
-      game.branch[name].button_y = love.graphics.getHeight() / 2 - game.branch[name].button_height / 2 - 100
-      game.branch[name].font = game.conf._font
+function branch.init(romance)
+   function romance.branch.new(name)
+      romance.branch[name] = {}
+      romance.branch[name].text = {}
+      romance.branch[name].image = {}
+      romance.branch[name].name = name
+      romance.branch[name].button_width = 500
+      romance.branch[name].button_height = 40
+      romance.branch[name].buttons = {}
+      romance.branch[name].button_x = love.graphics.getWidth() / 2 - romance.branch[name].button_width / 2
+      romance.branch[name].button_y = love.graphics.getHeight() / 2 - romance.branch[name].button_height / 2 - 100
+      romance.branch[name].font = romance.conf.font
 
 
-      if table_length(game.sequence.tree) == 0 then
-         game.state.current_branch = game.branch[name]
-         game.state.starting_branch = game.branch[name]
+      if table_length(romance.sequence.tree) == 0 then
+         romance.state.current_branch = romance.branch[name]
+         romance.state.starting_branch = romance.branch[name]
       end
 
-      game.sequence.tree[name] = ""
+      romance.sequence.tree[name] = ""
    end
 
-   function game.branch.set(name)
-      if not game.branch[name] then
+   function romance.branch.set(name)
+      if not romance.branch[name] then
          error("branch " .. name .. " does not exist")
       end
 
-      game.state.current_branch = game.branch[name]
+      romance.state.current_branch = romance.branch[name]
    end
 
-   function game.branch.set_new(name)
-      game.branch.new(name)
-      game.branch.set(name)
+   function romance.branch.setNew(name)
+      romance.branch.new(name)
+      romance.branch.set(name)
    end
 
-   function game.branch.next(name)
-      game.sequence.tree[game.state.current_branch.name] = name
+   function romance.branch.next(name)
+      romance.sequence.tree[romance.state.current_branch.name] = name
    end
 
-   function game.branch.choice(line, ...)
+   function romance.branch.choice(line, ...)
       local args = {...}
-      table.insert(game.state.current_branch.text, line)
-      game.state.current_branch.choice = args
-      game.prompt.add_buttons()
+      table.insert(romance.state.current_branch.text, line)
+      romance.state.current_branch.choice = args
+      romance.prompt.addButtons()
    end
 end
 

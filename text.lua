@@ -1,42 +1,42 @@
 local text = {}
 
-function text.init(game)
-   function game.text.add(text_table)
+function text.init(romance)
+   function romance.text.add(text_table)
       for _, v in pairs(text_table) do
-         table.insert(game.state.current_branch.text, v)
+         table.insert(romance.state.current_branch.text, v)
       end
    end
 
-   function game.text.render(line)
-      local text_start_width = game.textbox.width + 5
-      local text_start_height = game.textbox.height + 5
-      love.graphics.setFont(game.state.current_branch.font)
+   function romance.text.render(line)
+      local text_start_width = romance.textbox.width + 5
+      local text_start_height = romance.textbox.height + 5
+      love.graphics.setFont(romance.state.current_branch.font)
       love.graphics.print(line, text_start_width, text_start_height)
    end
 
-   function game.text.next()
-      if game.state.start then
-         game.textbox.render()
+   function romance.text.next()
+      if romance.state.start then
+         romance.textbox.render()
 
-         if not game.state.choosing then
-            game.key.update_continue_pressed()
-            if game.state.continue_pressed then
-               game.state.index = game.state.index + 1
+         if not romance.state.choosing then
+            romance.key.updateContinuePressed()
+            if romance.state.continue_pressed then
+               romance.state.index = romance.state.index + 1
             end
          end
 
-         game.text.draw()
+         romance.text.draw()
       else
-         game.state.current_branch = game.state.starting_branch
-         game.state.start = true
+         romance.state.current_branch = romance.state.starting_branch
+         romance.state.start = true
       end
    end
 
-   function game.text.draw()
-      if game.state.current_branch.text[game.state.index] then
-         game.text.render(game.state.current_branch.text[game.state.index])
+   function romance.text.draw()
+      if romance.state.current_branch.text[romance.state.index] then
+         romance.text.render(romance.state.current_branch.text[romance.state.index])
       else
-         game.sequence.next_branch()
+         romance.sequence.nextBranch()
       end
    end
 end

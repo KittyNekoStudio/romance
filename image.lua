@@ -1,26 +1,26 @@
 local image = {}
 
-function image.init(game)
-   function game.image.load(image_table)
+function image.init(romance)
+   function romance.image.load(image_table)
       for k, v in pairs(image_table) do
-         if game.image[k] then
+         if romance.image[k] then
             error("image name already exists")
          end
-         game.image[k] = love.graphics.newImage(v)
+         romance.image[k] = love.graphics.newImage(v)
       end
    end
 
-   function game.image.set(index, image_name)
-      table.insert(game.state.current_branch.image, index, image_name)
+   function romance.image.set(index, image_name)
+      table.insert(romance.state.current_branch.image, index, image_name)
    end
 
-   function game.image.render()
-      if game.state.current_branch.image[game.state.index] then
-         game.state.current_image = (game.image[game.state.current_branch.image[game.state.index]])
+   function romance.image.render()
+      if romance.state.current_branch.image[romance.state.index] then
+         romance.state.current_image = (romance.image[romance.state.current_branch.image[romance.state.index]])
       end
 
-      if game.state.current_image then
-         love.graphics.draw(game.state.current_image)
+      if romance.state.current_image then
+         love.graphics.draw(romance.state.current_image)
       end
    end
 end
