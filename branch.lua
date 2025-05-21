@@ -17,6 +17,7 @@ function branch.init(game)
       game.branch[name].buttons = {}
       game.branch[name].button_x = love.graphics.getWidth() / 2 - game.branch[name].button_width / 2
       game.branch[name].button_y = love.graphics.getHeight() / 2 - game.branch[name].button_height / 2 - 100
+      game.branch[name].font = game.conf._font
 
 
       if table_length(game.sequence.tree) == 0 then

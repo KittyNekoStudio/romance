@@ -8,6 +8,10 @@ function romance.init()
    local state = require("romance.state")
    state.init(romance)
 
+   romance.conf = {}
+   local conf = require("romance.conf")
+   conf.init(romance)
+
    romance.image = {}
    local image = require("romance.image")
    image.init(romance)

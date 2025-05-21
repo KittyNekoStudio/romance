@@ -1,12 +1,9 @@
 local key = {}
 
 function key.init(game)
-   game.key = {
-      continue = "space",
-   }
 
    function game.key.update_continue_pressed()
-      if love.keyboard.isDown(game.key.continue) then
+      if love.keyboard.isDown(game.conf.continue) then
          if game.state.continue_constantly_pressed then
             game.state.continue_pressed = false
          else
