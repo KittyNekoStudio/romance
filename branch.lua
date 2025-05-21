@@ -10,6 +10,7 @@ function branch.init(game)
    function game.branch.new(name)
       game.branch[name] = {}
       game.branch[name].text = {}
+      game.branch[name].image = {}
       game.branch[name].name = name
       game.branch[name].button_width = 500
       game.branch[name].button_height = 40

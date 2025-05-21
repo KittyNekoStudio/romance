@@ -8,6 +8,7 @@ function base.init(game)
    game.choosing = false
 
    function game.next()
+      game.image.render()
       game.text.next()
       if game.choosing then
          for k, _ in pairs(game.current_branch.buttons) do
