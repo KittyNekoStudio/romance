@@ -4,6 +4,10 @@ function romance.init()
    local base = require("romance.base")
    base.init(romance)
 
+   romance.state = {}
+   local state = require("romance.state")
+   state.init(romance)
+
    romance.image = {}
    local image = require("romance.image")
    image.init(romance)

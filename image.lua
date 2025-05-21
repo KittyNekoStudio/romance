@@ -11,16 +11,16 @@ function image.init(game)
    end
 
    function game.image.set(index, image_name)
-      table.insert(game.current_branch.image, index, image_name)
+      table.insert(game.state.current_branch.image, index, image_name)
    end
 
    function game.image.render()
-      if game.current_branch.image[game.index] then
-         game.current_image = (game.image[game.current_branch.image[game.index]])
+      if game.state.current_branch.image[game.state.index] then
+         game.state.current_image = (game.image[game.state.current_branch.image[game.state.index]])
       end
 
-      if game.current_image then
-         love.graphics.draw(game.current_image)
+      if game.state.current_image then
+         love.graphics.draw(game.state.current_image)
       end
    end
 end

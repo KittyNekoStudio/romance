@@ -7,7 +7,7 @@ function text.init(game)
 
    function game.text.add(text_table)
       for _, v in pairs(text_table) do
-         table.insert(game.current_branch.text, v)
+         table.insert(game.state.current_branch.text, v)
       end
    end
 
@@ -18,26 +18,26 @@ function text.init(game)
    end
 
    function game.text.next()
-      if game.start then
+      if game.state.start then
          game.textbox.render()
 
-         if not game.choosing then
+         if not game.state.choosing then
             game.key.update_continue_pressed()
-            if game.key.continue_pressed then
-               game.index = game.index + 1
+            if game.state.continue_pressed then
+               game.state.index = game.state.index + 1
             end
          end
 
          game.text.draw()
       else
-         game.current_branch = game.starting_branch
-         game.start = true
+         game.state.current_branch = game.state.starting_branch
+         game.state.start = true
       end
    end
 
    function game.text.draw()
-      if game.current_branch.text[game.index] then
-         game.text.render(game.current_branch.text[game.index])
+      if game.state.current_branch.text[game.state.index] then
+         game.text.render(game.state.current_branch.text[game.state.index])
       else
          game.sequence.next_branch()
       end

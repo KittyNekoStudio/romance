@@ -20,8 +20,8 @@ function branch.init(game)
 
 
       if table_length(game.sequence.tree) == 0 then
-         game.current_branch = game.branch[name]
-         game.starting_branch = game.branch[name]
+         game.state.current_branch = game.branch[name]
+         game.state.starting_branch = game.branch[name]
       end
 
       game.sequence.tree[name] = ""
@@ -32,7 +32,7 @@ function branch.init(game)
          error("branch " .. name .. " does not exist")
       end
 
-      game.current_branch = game.branch[name]
+      game.state.current_branch = game.branch[name]
    end
 
    function game.branch.set_new(name)
@@ -41,13 +41,13 @@ function branch.init(game)
    end
 
    function game.branch.next(name)
-      game.sequence.tree[game.current_branch.name] = name
+      game.sequence.tree[game.state.current_branch.name] = name
    end
 
    function game.branch.choice(line, ...)
       local args = {...}
-      table.insert(game.current_branch.text, line)
-      game.current_branch.choice = args
+      table.insert(game.state.current_branch.text, line)
+      game.state.current_branch.choice = args
       game.prompt.add_buttons()
    end
 end
