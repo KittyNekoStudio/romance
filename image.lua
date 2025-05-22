@@ -1,28 +1,36 @@
+--- @class romance.image
 local image = {}
+--- @param romance table Takes the romance table an intializes the image
+--- module
+local function init_image(romance)
 
-function image.init(romance)
-   function romance.image.load(image_table)
+   --- @param image_table table Table containing key to reference by and
+   --- path to image as value
+   function image.load(image_table)
       for k, v in pairs(image_table) do
-         if romance.image[k] then
+         if image[k] then
             error("image name already exists")
          end
-         romance.image[k] = love.graphics.newImage(v)
+         image[k] = love.graphics.newImage(v)
       end
    end
 
-   function romance.image.set(index, image_name)
+   function image.set(index, image_name)
       table.insert(romance.state.current_branch.image, index, image_name)
    end
 
-   function romance.image.render()
+   function image.render()
       if romance.state.current_branch.image[romance.state.index] then
-         romance.state.current_image = (romance.image[romance.state.current_branch.image[romance.state.index]])
+         romance.state.current_image = (
+            romance.image[romance.state.current_branch.image[romance.state.index]])
       end
 
       if romance.state.current_image then
          love.graphics.draw(romance.state.current_image)
       end
    end
+
+   return image
 end
 
-return image
+return init_image

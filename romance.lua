@@ -1,46 +1,45 @@
+--- @class romance
 local romance = {}
 
-function romance.init()
-   local base = require("romance.base")
-   base.init(romance)
+local function init_romance()
+   local init_state = require("romance.state")
+   romance.state = init_state(romance)
 
-   romance.state = {}
-   local state = require("romance.state")
-   state.init(romance)
+   local init_conf = require("romance.conf")
+   romance.conf = init_conf(romance)
 
-   romance.conf = {}
-   local conf = require("romance.conf")
-   conf.init(romance)
+   local init_image = require("romance.image")
+   romance.image = init_image(romance)
 
-   romance.image = {}
-   local image = require("romance.image")
-   image.init(romance)
+   local init_text = require ("romance.text")
+   romance.text = init_text(romance)
 
-   romance.text = {}
-   local text = require ("romance.text")
-   text.init(romance)
+   local init_branch = require ("romance.branch")
+   romance.branch = init_branch(romance)
 
-   romance.branch = {}
-   local branch = require ("romance.branch")
-   branch.init(romance)
+   local init_textbox = require ("romance.textbox")
+   romance.textbox = init_textbox(romance)
 
-   romance.textbox = {}
-   local textbox = require ("romance.textbox")
-   textbox.init(romance)
+   local init_key = require("romance.key")
+   romance.key = init_key(romance)
 
-   romance.key = {}
-   local key = require("romance.key")
-   key.init(romance)
+   local init_sequence = require("romance.sequence")
+   romance.sequence = init_sequence(romance)
 
-   romance.sequence = {}
-   local sequence = require("romance.sequence")
-   sequence.init(romance)
-
-   romance.prompt = {}
-   local prompt = require("romance.prompt")
-   prompt.init(romance)
+   local init_prompt = require("romance.prompt")
+   romance.prompt = init_prompt(romance)
 end
 
-romance.init()
+--- Render loop for romance
+function romance.next()
+   romance.image.render()
+   romance.text.next()
+   if romance.state.choosing then
+      for k, _ in pairs(romance.state.current_branch.buttons) do
+         romance.prompt.buttonPressed(k)
+      end
+   end
+end
 
+init_romance()
 return romance

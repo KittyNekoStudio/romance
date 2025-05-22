@@ -1,16 +1,19 @@
+--- @class romance.textbox
 local textbox = {}
 
-function textbox.init(romance)
-   romance.textbox = {
+local function init_textbox(romance)
+   textbox = {
       width = love.graphics.getWidth() / 2 - 400,
       height = love.graphics.getHeight() - 100
    }
 
-   function romance.textbox.render()
+   function textbox.render()
       -- TODO! got dimensions and coordinates mixed up
       love.graphics.rectangle("line", romance.textbox.width,
                               romance.textbox.height, 800, 90)
    end
+
+   return textbox
 end
 
-return textbox
+return init_textbox

@@ -1,13 +1,16 @@
+--- @class romance.state
 local state = {}
 
-function state.init(romance)
-   romance.state.start = false
-   romance.state.index = 1
-   romance.state.current_branch = ""
-   romance.state.starting_branch = ""
-   romance.state.choosing = false
-   romance.state.continue_pressed = false
-   romance.state.continue_constantly_pressed = false
+local function init_state(romance)
+   state.start = false
+   state.index = 1
+   state.current_branch = ""
+   state.starting_branch = ""
+   state.choosing = false
+   state.continue_pressed = false
+   state.continue_constantly_pressed = false
+
+   return state
 end
 
-return state
+return init_state

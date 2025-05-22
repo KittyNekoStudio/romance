@@ -1,15 +1,16 @@
+--- @class romance.prompt
 local prompt = {}
 
-function prompt.init(romance)
-   function romance.prompt.render()
+local function init_prompt(romance)
+   function prompt.render()
       for _, v in pairs(romance.state.current_branch.buttons) do
-         romance.prompt.drawButton(v)
+         prompt.drawButton(v)
       end
    end
 
-   function romance.prompt.chooseBranch()
+   function prompt.chooseBranch()
       romance.state.choosing = true
-      romance.prompt.render()
+      prompt.render()
       romance.text.render(romance.state.current_branch.text[romance.state.index - 1])
 
       if romance.state.pressed then
@@ -20,7 +21,7 @@ function prompt.init(romance)
       end
    end
 
-   function romance.prompt.buttonNew(text, width, height, x, y)
+   function prompt.buttonNew(text, width, height, x, y)
       local count = 0
       for _ in pairs(romance.state.current_branch.buttons) do
          count = count + 1
@@ -43,14 +44,14 @@ function prompt.init(romance)
       table.insert(romance.state.current_branch.buttons, button)
    end
 
-   function romance.prompt.addButtons()
+   function prompt.addButtons()
       local args = romance.state.current_branch.choice
       for _, v in pairs(args) do
-         romance.prompt.buttonNew(v[1])
+         prompt.buttonNew(v[1])
       end
    end
 
-   function romance.prompt.buttonPressed(i)
+   function prompt.buttonPressed(i)
       local x, y = love.mouse.getX(), love.mouse.getY()
       local buttons = romance.state.current_branch.buttons
       if x > buttons[i].x and x < buttons[i].x + buttons[i].width
@@ -61,11 +62,13 @@ function prompt.init(romance)
       end
    end
 
-   function romance.prompt.drawButton(button)
+   function prompt.drawButton(button)
       love.graphics.rectangle("line", button.x, button.y,
                               button.width, button.height)
       love.graphics.print(button.text, button.x, button.y)
    end
+
+   return prompt
 end
 
-return prompt
+return init_prompt

@@ -1,7 +1,8 @@
+--- @class romance.key
 local key = {}
 
-function key.init(romance)
-   function romance.key.updateContinuePressed()
+local function init_key(romance)
+   function key.updateContinuePressed()
       if love.keyboard.isDown(romance.conf.continue) then
          if romance.state.continue_constantly_pressed then
             romance.state.continue_pressed = false
@@ -14,6 +15,8 @@ function key.init(romance)
          romance.state.continue_pressed = false
       end
    end
+
+   return key
 end
 
-return key
+return init_key

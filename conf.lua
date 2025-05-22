@@ -1,16 +1,19 @@
+--- @class romance.conf
 local conf = {}
 
-function conf.init(romance)
-   romance.conf.continue = "space"
-   romance.conf.font = love.graphics.newFont(20)
+local function init_conf(romance)
+   conf.continue = "space"
+   conf.font = love.graphics.newFont(20)
 
-   function romance.conf.setFont(font)
+   function conf.setFont(font)
       if romance.state.starting_branch == "" then
-         romance.conf.font = font
+         conf.font = font
       else
          romance.state.current_branch.font = font
       end
    end
+
+   return conf
 end
 
-return conf
+return init_conf
